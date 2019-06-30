@@ -1,40 +1,5 @@
 var MatchGame = {};
 
-var cardValues = [];
-
-for (var i = 1; i < 9; i++) {
-  cardValues.push(i);
-  cardValues.push(i);
-};
-
-console.log(cardValues);
-
-var randomCardValues = cardValues.splice(0, 16, getRandomInt(8));
-
-while (cardValues.length = 0) {
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max)) + 1;
-  }
-  var randomValues = console.log(getRandomInt(8));
-  cardValues.splice(0, 16, randomValues);
-};
-
-var randomCardValues = cardValues.splice(0, 16, randomValues);
-console.log(randomCardValues);
-
-var months = ['Jan', 'March', 'April', 'June'];
-months.splice(1, 0, 'Feb');
-// inserts at index 1
-console.log(months);
-// expected output: Array ['Jan', 'Feb', 'March', 'April', 'June']
-
-months.splice(4, 1, 'May');
-// replaces 1 element at index 4
-console.log(months);
-// expected output: Array ['Jan', 'Feb', 'March', 'April', 'May']
-
-
-
 /*
   Sets up a new game after HTML document has loaded.
   Renders a 4x4 board of cards.
@@ -45,7 +10,22 @@ console.log(months);
  */
 
 MatchGame.generateCardValues = function () {
+  var sequentialValues = [];
 
+  for (var i = 1; i < 9; i++) {
+    sequentialValues.push(i);
+    sequentialValues.push(i);
+  };
+
+  var cardValues = [];
+
+  while (sequentialValues.length > 0) {
+    var randomIndex = Math.floor(Math.random() * sequentialValues.length);
+    var randomValue = sequentialValues.splice(randomIndex, 1)[0];
+    cardValues.push(randomValue);
+  };
+
+  return cardValues;
 };
 
 /*
@@ -54,7 +34,7 @@ MatchGame.generateCardValues = function () {
 */
 
 MatchGame.renderCards = function(cardValues, $game) {
-
+  $('.game').empty();
 };
 
 /*
